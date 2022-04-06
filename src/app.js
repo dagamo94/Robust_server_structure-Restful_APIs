@@ -16,7 +16,7 @@ app.get("/notes/:noteId", (req, res, next) => {
     res.json({ data: foundNote });
   } else {
     //next(`Note id not found: ${req.params.noteId}`);
-    res.status(400).send(`Note id not found: ${req.params.noteId}`);
+    res.status(400).json({error: `Note id not found: ${req.params.noteId}`});
   }
 });
 
@@ -49,7 +49,7 @@ app.post("/notes", (req, res, next) => {
 
 // TODO: Add not-found handler
 app.use((req, res, next) => {
-  res.status(404).send(`Not found: ${req.originalUrl}`);
+  res.status(404).json({error: `Not found: ${req.originalUrl}`});
   // res.send(`Not found: ${req.originalUrl}`);
 });
 
